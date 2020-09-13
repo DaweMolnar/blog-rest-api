@@ -6,4 +6,5 @@ urlpatterns = [
     path('api/author/', views.AuthorCreate.as_view()),
     path('api/label/', views.LabelCreate.as_view()),
     path('api/comment/', views.CommentCreate.as_view()),
+    path('api/comment/<post_id>', views.CommentView.as_view()),
 ]

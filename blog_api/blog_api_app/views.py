@@ -18,6 +18,14 @@ class CommentCreate(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
 
 
+class CommentView(generics.ListAPIView):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        queryset = Comment.objects.filter(pk=self.kwargs['post_id'])
+        return queryset
+
+
 class AuthorCreate(generics.ListCreateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
