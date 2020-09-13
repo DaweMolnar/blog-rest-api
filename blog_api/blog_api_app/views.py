@@ -1,3 +1,5 @@
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from .models import Post, Label, Comment, Author
 from .serializers import PostSerializer, LabelSerializer, CommentSerializer, AuthorSerializer
 from rest_framework import generics
@@ -6,11 +8,13 @@ from rest_framework import generics
 class PostCreate(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class LabelCreate(generics.ListCreateAPIView):
     queryset = Label.objects.all()
     serializer_class = LabelSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CommentCreate(generics.ListCreateAPIView):
@@ -29,8 +33,10 @@ class CommentView(generics.ListAPIView):
 class AuthorCreate(generics.ListCreateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CommentDelete(generics.DestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
